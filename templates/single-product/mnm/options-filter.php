@@ -36,7 +36,7 @@ if( $terms && ! is_wp_error( $terms ) ) { ?>
 		<?php
 
 		foreach( $terms as $term ) {
-			printf( '<li><button data-filter="%s">%s</button></li>', $term->slug, $term->name ); 
+			printf( '<li class="'.$term->name.'"><button data-filter="%s">%s</button></li>', $term->slug, $term->name ); 
 		}
 
 		?>
