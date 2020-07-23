@@ -23,7 +23,9 @@ if ( ! defined( 'ABSPATH' ) ){
 ?>
 <?php
 
-if( $terms && ! is_wp_error( $terms ) ) { ?>
+if( $terms && ! is_wp_error( $terms ) ) { 
+		// var_dump($terms);
+	?>
 
 	<div class="mnm_filter_button_group" style="display:none" data-taxonomy="<?php echo esc_attr( $taxonomy ); ?>">
 
@@ -36,7 +38,17 @@ if( $terms && ! is_wp_error( $terms ) ) { ?>
 		<?php
 
 		foreach( $terms as $term ) {
-			printf( '<li class="'.$term->slug.'"><button data-filter="%s">%s</button></li>', $term->slug, $term->name ); 
+			
+			echo '<li class="'.$term->slug.'">';
+				printf( '<button data-filter="%s">%s</button>', $term->slug, $term->name );
+				echo '<ul class="parent-'.$term->term_id.'">';
+					foreach( get_terms( $taxonomy, array( 'hide_empty' => true, 'parent' => $term->term_id ) ) as $child ):
+						echo '<li class="'.$child->slug.'">';
+							printf( '<button data-filter="%s">%s</button>', $child->slug, $child->name );
+						echo '</li>';
+					endforeach;
+				echo '</ul>';
+			echo '</li>';
 		}
 
 		?>
