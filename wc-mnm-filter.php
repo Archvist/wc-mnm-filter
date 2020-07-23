@@ -200,7 +200,7 @@ class WC_MNM_Filter {
 						'container' => $product,
 						'layout'    => $product->get_layout(),
 						'taxonomy'	=> $taxonomy,
-						'terms'     => get_terms( $taxonomy, array( 'orderby' => 'name' ) )
+						'terms'     => get_terms( $taxonomy, array( 'orderby' => 'name', 'parent' => 0 ) )
 					),
 					'',
 					self::plugin_path() . '/templates/'
