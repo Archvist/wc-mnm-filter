@@ -41,10 +41,10 @@ if( $terms && ! is_wp_error( $terms ) ) {
 			
 			echo '<li class="'.$term->slug.'">';
 				printf( '<button data-filter="%s">%s</button>', $term->slug, $term->name );
-				echo '<ul class="parent-'.$term->term_id.'">';
+				echo '<ul class="child-drop parent-'.$term->term_id.'">';
 					foreach( get_terms( $taxonomy, array( 'hide_empty' => true, 'parent' => $term->term_id ) ) as $child ):
 						echo '<li class="'.$child->slug.'">';
-							printf( '<button data-filter="%s">%s</button>', $child->slug, $child->name );
+							printf( '<button class="child-option" data-filter="%s">%s</button>', $child->slug, $child->name );
 						echo '</li>';
 					endforeach;
 				echo '</ul>';

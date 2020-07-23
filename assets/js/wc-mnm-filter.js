@@ -96,6 +96,14 @@
 
       $(this).toggleClass( 'selected' );
 
+      console.log($(this).html());
+
+
+      if(this.classList.contains('child-option')){
+        $(this).parent().parent().parent().find('button').eq(0).addClass('selected');
+      }
+
+
       // Get all selected terms.
       var $selected = filter.$buttons.filter( '.selected' );
        
